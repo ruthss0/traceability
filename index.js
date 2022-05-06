@@ -11,6 +11,10 @@ const rollbar = new Rollbar({
   captureUnhandledRejections: true,
 })
 
+let people = [];
+
+app.use(rollbar.errorHandler())
+
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/index.html'))
     rollbar.info('html file served successfully')
