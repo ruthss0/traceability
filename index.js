@@ -13,7 +13,7 @@ const rollbar = new Rollbar({
 
 let people = [];
 
-app.use(rollbar.errorHandler())
+// app.use(express.json())
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/index.html'))
@@ -30,6 +30,8 @@ app.post('/api/person', (req, res) => {
 
     res.status(200).send(people);
 })
+
+app.use(rollbar.errorHandler())
 
 app.listen(port, () => console.log(`Take us to warp ${port}!`))
 
