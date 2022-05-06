@@ -16,5 +16,16 @@ app.get('/', (req, res) => {
     rollbar.info('html file served successfully')
 })
 
+app.post('/api/person', (req, res) => {
+    let {name} = req.body;
+    name = name.trim();
+
+    people.push(name);
+
+    rollbar.log('person added successfully', {author:"Gabi", type:'manual'})
+
+    res.status(200).send(people);
+})
+
 app.listen(port, () => console.log(`Take us to warp ${port}!`))
 

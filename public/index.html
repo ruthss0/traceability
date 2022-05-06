@@ -5,8 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Traceability</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
     <h1>Traceability</h1>
+    <form>
+        <input type="text" placeholder="type name here" />
+        <button>Add person</button>
+    </form>
+    <script>
+        const addForm = document.querySelector('form');
+        const nameInput = document.querySelector('input');
+
+        function submitHandler(e) {
+            e.preventDefault();
+            axios.post('/api/person', { name: nameInput.value })
+                .then(res => console.log(res))
+                .catch(err => console.log(err))
+        }
+        addForm.addEventListener('submit', submitHandler);
+    </script>
 </body>
 </html>
